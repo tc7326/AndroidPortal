@@ -1,4 +1,4 @@
-package com.renchehui.vvuser.utils.dialogutils;
+package info.itloser.androidportal.custom;
 
 import android.app.Activity;
 import android.content.Context;
@@ -16,9 +16,9 @@ import android.view.WindowManager;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
-import com.renchehui.vvuser.R;
-
 import java.util.List;
+
+import info.itloser.androidportal.R;
 
 /**
  * author：zhaoliangwang on 2018/12/25 14:47
@@ -128,13 +128,13 @@ public class MyCustomPopupWindow extends PopupWindow {
 
             TextView textView;
 
-            public ViewHolder(View itemView) {
+            ViewHolder(View itemView) {
                 super(itemView);
                 textView = itemView.findViewById(R.id.tv_item_content);
             }
         }
 
-        public MyCustomAdapter(List<String> itemStrings, int positon) {
+        MyCustomAdapter(List<String> itemStrings, int positon) {
             this.itemStrings = itemStrings;
             this.selectedPosition = positon;
         }
