@@ -29,7 +29,7 @@ public class LocalService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        //开一个计时器打印日志
+        //开一个计时器打印日志dd
         countDownTimer = new CountDownTimer(24 * 60 * 60 * 1000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
