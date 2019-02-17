@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -15,8 +14,9 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import info.itloser.androidportal.components.goactivity.GoStandardActivity;
+import info.itloser.androidportal.components.goservice.ServiceActivity;
 import info.itloser.androidportal.custom.MyCustomPopupWindow;
-import info.itloser.androidportal.goactivity.GoTask0Activity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,10 +38,10 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.go_activity:
-                startActivity(new Intent(MainActivity.this, GoTask0Activity.class));
+                startActivity(new Intent(MainActivity.this, GoStandardActivity.class));
                 break;
             case R.id.go_service:
-                Log.i("tag", "s");
+                startActivity(new Intent(MainActivity.this, ServiceActivity.class));
                 break;
         }
         return super.onOptionsItemSelected(item);

@@ -13,5 +13,8 @@
 
     <string name="main_menu_0">四大组件</string>
 
+    <string name="start_Service">以start方式启动Service</string>
+    <string name="bind_Service">以bind方式启动Service</string>
+    <string name="stop_Service">关闭Service</string>
 
 </resources>

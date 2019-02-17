@@ -15,12 +15,38 @@
                 <action android:name="android.intent.action.MAIN" />
                 <!-- 更新后加的，不加没影响，但是看着难受 -->
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".BaseActivity" />
-        <activity android:name=".goactivity.GoTask0Activity"/>
-        <activity android:name=".goactivity.GoTask1Activity"/>
+
+        <!-- 标准（默认的） 启动模式 -->
+        <activity
+            android:name=".components.goactivity.GoStandardActivity"
+            android:launchMode="standard" />
+        <!-- 栈顶复用    启动模式 -->
+        <activity
+            android:name=".components.goactivity.GoSingleTopActivity"
+            android:launchMode="singleTop" />
+        <!-- 栈内复用    启动模式 -->
+        <activity
+            android:name=".components.goactivity.GoSingleTaskActivity"
+            android:launchMode="singleTask" />
+        <!-- 单栈模式    启动模式 -->
+        <activity
+            android:name=".components.goactivity.GoSingleInstanceActivity"
+            android:launchMode="singleInstance" />
+
+        <!-- 普通Service -->
+        <service
+            android:name=".components.goservice.LocalService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".layout.GoLayoutActivity" />
+        <activity android:name=".components.goactivity.BaseTaskActivity" />
+        <activity android:name=".components.goservice.ServiceActivity"/>
     </application>
 
 </manifest>
