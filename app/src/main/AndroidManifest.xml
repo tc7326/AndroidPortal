@@ -44,9 +44,15 @@
             android:enabled="true"
             android:exported="true" />
 
+        <!-- IntentService -->
+        <service
+            android:name=".components.goservice.MyIntentService"
+            android:exported="false" />
+
         <activity android:name=".layout.GoLayoutActivity" />
         <activity android:name=".components.goactivity.BaseTaskActivity" />
-        <activity android:name=".components.goservice.ServiceActivity"/>
+        <activity android:name=".components.goservice.ServiceActivity" />
+        <activity android:name=".components.gobroadcastreceiver.BroadcastActivity"></activity>
     </application>
 
 </manifest>

@@ -7,6 +7,15 @@
         android:id="@+id/bind_service"
         android:title="@string/bind_Service" />
     <item
+        android:id="@+id/use_Service"
+        android:title="@string/use_Service" />
+    <item
+        android:id="@+id/unbind_service"
+        android:title="@string/unbind_Service" />
+    <item
         android:id="@+id/stop_service"
         android:title="@string/stop_Service" />
+    <item
+        android:id="@+id/intent_service"
+        android:title="@string/intent_Service" />
 </menu>

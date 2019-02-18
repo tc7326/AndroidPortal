@@ -5,6 +5,8 @@
     <string name="auto_check_item">自定义单选框</string>
     <string name="activity">Activity</string>
     <string name="service">Service</string>
+    <string name="service_status">Service状态：</string>
+    <string name="thread_status">Thread状态：</string>
     <string name="show_dialog">弹个dialog</string>
     <string name="new_activity_by_standard">以standard(default)方式</string>
     <string name="new_activity_by_singleTop">以singleTop方式</string>
@@ -15,6 +17,9 @@
 
     <string name="start_Service">以start方式启动Service</string>
     <string name="bind_Service">以bind方式启动Service</string>
+    <string name="use_Service">调用Service中的方法</string>
+    <string name="unbind_Service">解绑Service</string>
     <string name="stop_Service">关闭Service</string>
+    <string name="intent_Service">IntentService</string>
 
 </resources>

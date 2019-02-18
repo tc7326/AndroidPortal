@@ -10,6 +10,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import java.util.Objects;
+
 import info.itloser.androidportal.R;
 
 public class BaseTaskActivity extends AppCompatActivity {
@@ -23,6 +25,7 @@ public class BaseTaskActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         Log.i("dd", "onCreate：" + getClass().getSimpleName() + " TaskId: " + getTaskId() + " hasCode:" + this.hashCode());
         dumpTaskAffinity();
     }
@@ -64,6 +67,9 @@ public class BaseTaskActivity extends AppCompatActivity {
                 break;
             case R.id.new_singleInstance_activity:
                 startActivity(new Intent(getApplicationContext(), GoSingleInstanceActivity.class));
+                break;
+            case android.R.id.home:
+                finish();
                 break;
         }
         return super.onOptionsItemSelected(item);

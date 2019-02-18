@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import info.itloser.androidportal.components.goactivity.GoStandardActivity;
 import info.itloser.androidportal.components.goservice.ServiceActivity;
@@ -43,6 +44,10 @@ public class MainActivity extends AppCompatActivity {
             case R.id.go_service:
                 startActivity(new Intent(MainActivity.this, ServiceActivity.class));
                 break;
+            case android.R.id.home:
+                finish();
+                break;
+
         }
         return super.onOptionsItemSelected(item);
     }
@@ -51,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         strings.add("光年之外");
         strings.add("倒数");
