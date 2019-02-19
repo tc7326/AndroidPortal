@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Objects;
 
 import info.itloser.androidportal.components.goactivity.GoStandardActivity;
+import info.itloser.androidportal.components.gobroadcastreceiver.BroadcastActivity;
 import info.itloser.androidportal.components.goservice.ServiceActivity;
 import info.itloser.androidportal.custom.MyCustomPopupWindow;
 
@@ -43,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.go_service:
                 startActivity(new Intent(MainActivity.this, ServiceActivity.class));
+                break;
+            case R.id.go_broadcast:
+                startActivity(new Intent(MainActivity.this, BroadcastActivity.class));
                 break;
             case android.R.id.home:
                 finish();

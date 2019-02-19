@@ -9,6 +9,22 @@
             <item
                 android:id="@+id/go_service"
                 android:title="@string/service" />
+            <item
+                android:id="@+id/go_broadcast"
+                android:title="@string/broadcast_receiver" />
+        </menu>
+
+
+    </item>
+    <item android:title="@string/main_menu_1">
+
+        <menu>
+            <item
+                android:id="@+id/go_layout"
+                android:title="@string/layout" />
+            <item
+                android:id="@+id/go_resources"
+                android:title="@string/resources" />
         </menu>
 
 

@@ -25,7 +25,7 @@ public class BaseTaskActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);//启用菜单栏返回键
         Log.i("dd", "onCreate：" + getClass().getSimpleName() + " TaskId: " + getTaskId() + " hasCode:" + this.hashCode());
         dumpTaskAffinity();
     }
@@ -46,8 +46,7 @@ public class BaseTaskActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 //        Log.i("dd", "onCreateOptionsMenu");
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.task0_activity_menu, menu);
+        getMenuInflater().inflate(R.menu.task0_activity_menu, menu);
         return true;
     }
 

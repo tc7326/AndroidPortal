@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/send_broadcast"
+        android:title="@string/send_broadcast" />
+    <item
+        android:id="@+id/send_ordered_broadcast"
+        android:title="@string/send_ordered_broadcast" />
+    <item
+        android:id="@+id/send_local_broadcast"
+        android:title="@string/send_local_broadcast" />
+    <item
+        android:id="@+id/send_permission_broadcast"
+        android:title="@string/send_permission_broadcast" />
+</menu>

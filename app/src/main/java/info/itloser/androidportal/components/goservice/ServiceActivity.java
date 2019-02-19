@@ -8,7 +8,6 @@ import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import java.util.Objects;
@@ -35,8 +34,7 @@ public class ServiceActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.service_activity_menu, menu);
+        getMenuInflater().inflate(R.menu.service_activity_menu, menu);
         return true;
     }
 

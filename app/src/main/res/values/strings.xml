@@ -5,6 +5,9 @@
     <string name="auto_check_item">自定义单选框</string>
     <string name="activity">Activity</string>
     <string name="service">Service</string>
+    <string name="layout">layout</string>
+    <string name="resources">resources</string>
+    <string name="broadcast_receiver">BroadcastReceiver</string>
     <string name="service_status">Service状态：</string>
     <string name="thread_status">Thread状态：</string>
     <string name="show_dialog">弹个dialog</string>
@@ -14,6 +17,7 @@
     <string name="new_activity_by_singleInstance">以singleInstance方式</string>
 
     <string name="main_menu_0">四大组件</string>
+    <string name="main_menu_1">布局及资源</string>
 
     <string name="start_Service">以start方式启动Service</string>
     <string name="bind_Service">以bind方式启动Service</string>
@@ -21,5 +25,12 @@
     <string name="unbind_Service">解绑Service</string>
     <string name="stop_Service">关闭Service</string>
     <string name="intent_Service">IntentService</string>
+
+
+    <string name="send_broadcast">发送一条普通广播</string>
+    <string name="send_ordered_broadcast">发送一坨有序广播</string>
+    <string name="send_local_broadcast">发送一条本地广播</string>
+    <string name="send_permission_broadcast">发送一条带权限的广播</string>
+
 
 </resources>

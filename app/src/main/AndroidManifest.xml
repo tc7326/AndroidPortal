@@ -2,6 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="info.itloser.androidportal">
 
+    <!-- 权限声明   无权限则无法接收到相关广播   名称随便起 -->
+    <permission
+        android:name="info.itloser.androidportal.AUTO_PERMISSION"
+        android:protectionLevel="normal" />
+    <!-- 注册刚才声明的权限  接收广播的权限 -->
+    <uses-permission android:name="info.itloser.androidportal.AUTO_PERMISSION" />
+
+
     <application
         android:name=".BaseApplication"
         android:allowBackup="true"
@@ -52,7 +60,18 @@
         <activity android:name=".layout.GoLayoutActivity" />
         <activity android:name=".components.goactivity.BaseTaskActivity" />
         <activity android:name=".components.goservice.ServiceActivity" />
-        <activity android:name=".components.gobroadcastreceiver.BroadcastActivity"></activity>
+        <activity android:name=".components.gobroadcastreceiver.BroadcastActivity" />
+
+        <!--广播接收器   静态注册-->
+        <receiver
+            android:name=".components.gobroadcastreceiver.MyReceiver"
+            android:enabled="true"
+            android:permission="info.itloser.androidportal.AUTO_PERMISSION"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="my_broadcast" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
