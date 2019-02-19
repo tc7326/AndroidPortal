@@ -9,7 +9,6 @@
     <!-- 注册刚才声明的权限  接收广播的权限 -->
     <uses-permission android:name="info.itloser.androidportal.AUTO_PERMISSION" />
 
-
     <application
         android:name=".BaseApplication"
         android:allowBackup="true"
@@ -62,16 +61,18 @@
         <activity android:name=".components.goservice.ServiceActivity" />
         <activity android:name=".components.gobroadcastreceiver.BroadcastActivity" />
 
-        <!--广播接收器   静态注册-->
+        <!-- 广播接收器   静态注册 -->
         <receiver
             android:name=".components.gobroadcastreceiver.MyReceiver"
             android:enabled="true"
-            android:permission="info.itloser.androidportal.AUTO_PERMISSION"
-            android:exported="true">
+            android:exported="true"
+            android:permission="info.itloser.androidportal.AUTO_PERMISSION">
             <intent-filter>
                 <action android:name="my_broadcast" />
             </intent-filter>
         </receiver>
+
+        <activity android:name=".custom.CustomViewActivity"></activity>
     </application>
 
 </manifest>

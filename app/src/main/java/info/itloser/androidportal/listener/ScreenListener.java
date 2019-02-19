@@ -7,6 +7,7 @@ import android.content.IntentFilter;
 import android.os.PowerManager;
 
 /**
+ * 屏幕监听
  * author：zhaoliangwang on 2019/2/13 10:48
  * email：tc7326@126.com
  */
@@ -38,6 +39,7 @@ public class ScreenListener {
             }
         }
     }
+
     /**
      * 开始监听screen状态
      *
@@ -85,6 +87,7 @@ public class ScreenListener {
     }
 
     public interface ScreenStateListener {// 返回给调用者屏幕状态信息
+
         public void onScreenOn();
 
         public void onScreenOff();

@@ -18,6 +18,7 @@ import java.util.Objects;
 import info.itloser.androidportal.components.goactivity.GoStandardActivity;
 import info.itloser.androidportal.components.gobroadcastreceiver.BroadcastActivity;
 import info.itloser.androidportal.components.goservice.ServiceActivity;
+import info.itloser.androidportal.custom.CustomViewActivity;
 import info.itloser.androidportal.custom.MyCustomPopupWindow;
 
 public class MainActivity extends AppCompatActivity {
@@ -49,7 +50,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, BroadcastActivity.class));
                 break;
             case android.R.id.home:
-                finish();
+//                finish();
+                startActivity(new Intent(MainActivity.this, CustomViewActivity.class));
                 break;
 
         }
