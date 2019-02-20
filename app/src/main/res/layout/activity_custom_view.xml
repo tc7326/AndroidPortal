@@ -1,15 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".custom.CustomViewActivity">
 
-    <info.itloser.androidportal.custom.MyView
+    <!--<info.itloser.androidportal.custom.MyView-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="100dp"-->
+    <!--android:background="#50FF0000"-->
+    <!--app:color="@color/colorAccent" />-->
+    <!--color为在xml中自定义的属性-->
+
+    <info.itloser.androidportal.custom.MyViewGroup
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="#50FF0000" />
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="wrap_content" />
+
+    </info.itloser.androidportal.custom.MyViewGroup>
 
 
-</android.support.constraint.ConstraintLayout>
+    <info.itloser.androidportal.custom.MyView
+        android:layout_width="wrap_content"
+        android:layout_height="100dp" />
+
+</LinearLayout>
