@@ -14,27 +14,32 @@
     <!--app:color="@color/colorAccent" />-->
     <!--color为在xml中自定义的属性-->
 
-    <info.itloser.androidportal.custom.MyViewGroup
+    <!--<info.itloser.androidportal.custom.MyViewGroup-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content">-->
+
+    <!--<Button-->
+    <!--android:layout_width="100dp"-->
+    <!--android:layout_height="wrap_content" />-->
+
+    <!--<Button-->
+    <!--android:layout_width="200dp"-->
+    <!--android:layout_height="wrap_content" />-->
+
+    <!--<Button-->
+    <!--android:layout_width="50dp"-->
+    <!--android:layout_height="wrap_content" />-->
+
+    <!--</info.itloser.androidportal.custom.MyViewGroup>-->
+
+
+    <!--<info.itloser.androidportal.custom.MyView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="100dp" />-->
+
+    <info.itloser.androidportal.custom.MiClockView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <Button
-            android:layout_width="100dp"
-            android:layout_height="wrap_content" />
-
-        <Button
-            android:layout_width="200dp"
-            android:layout_height="wrap_content" />
-
-        <Button
-            android:layout_width="50dp"
-            android:layout_height="wrap_content" />
-
-    </info.itloser.androidportal.custom.MyViewGroup>
-
-
-    <info.itloser.androidportal.custom.MyView
-        android:layout_width="wrap_content"
-        android:layout_height="100dp" />
+        android:layout_height="match_parent"
+        />
 
 </LinearLayout>

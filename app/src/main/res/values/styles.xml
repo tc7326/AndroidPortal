@@ -13,12 +13,4 @@
         <item name="android:windowEnterAnimation">@anim/popup_anim_down</item>
     </style>
 
-    <!--声明自定义属性-->
-    <declare-styleable name="MyView">
-        <!--定义属性名称叫color，取值类型是color-->
-        <attr name="color" format="color" />
-
-    </declare-styleable>
-
-
 </resources>

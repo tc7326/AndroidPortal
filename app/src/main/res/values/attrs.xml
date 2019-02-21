@@ -1,0 +1,18 @@
+<resources>
+
+    <!--声明自定义属性-->
+    <declare-styleable name="MyView">
+        <!--定义属性名称叫color，取值类型是color-->
+        <attr name="color" format="color" />
+    </declare-styleable>
+
+    <!--MiClockView的属性-->
+    <declare-styleable name="ClockView">
+        <attr name="clock_backgroundColor" format="color" />
+        <attr name="clock_lightColor" format="color" />
+        <attr name="clock_darkColor" format="color" />
+        <attr name="clock_textSize" format="dimension" />
+    </declare-styleable>
+
+
+</resources>
