@@ -97,6 +97,8 @@ public class MiClockView extends View {
     /* 刻度线画笔 */
     private Paint mScaleLinePaint;
 
+    private int centerX;
+    private int centerY;
 
     /*
      * 带属性的构造
@@ -174,7 +176,6 @@ public class MiClockView extends View {
 
     }
 
-
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         Log.i("dd", "onSizeChanged");
@@ -198,7 +199,6 @@ public class MiClockView extends View {
                 new int[]{mDarkColor, mLightColor}, new float[]{0.75f, 1});
     }
 
-
     @Override
     protected void onDraw(Canvas canvas) {
         Log.i("dd", "onDraw");
@@ -207,7 +207,85 @@ public class MiClockView extends View {
         drawOutSideArc();//画最外圈的弧线和时刻0
         getCurrentTime();//获取当前系统时间1
         drawScaleLine();//画一圈梯度渲染的亮暗色渐变圆弧，重绘时不断旋转，上面盖一圈背景色的刻度线2
+        drawHourHand();//时针
+        drawMinuteNeedle();//分针
+        drawSecondNeedle();//秒针
         invalidate();
+    }
+
+    /**
+     * 绘制时针
+     */
+    private void drawHourHand() {
+        mCanvas.save();
+        mCanvas.translate(mCanvasTranslateX * 1.2f, mCanvasTranslateY * 1.2f);
+        mCanvas.rotate(mHourDegree, getWidth() / 2, getHeight() / 2);
+        mHourHandPath.reset();
+        float offset = mPaddingTop + mTextRect.height() / 2;
+        mHourHandPath.moveTo(getWidth() / 2 - 0.018f * mRadius, getHeight() / 2 - 0.03f * mRadius);
+        mHourHandPath.lineTo(getWidth() / 2 - 0.009f * mRadius, offset + 0.48f * mRadius);
+        mHourHandPath.quadTo(getWidth() / 2, offset + 0.46f * mRadius,
+                getWidth() / 2 + 0.009f * mRadius, offset + 0.48f * mRadius);
+        mHourHandPath.lineTo(getWidth() / 2 + 0.018f * mRadius, getHeight() / 2 - 0.03f * mRadius);
+        mHourHandPath.close();
+        mHourHandPaint.setStyle(Paint.Style.FILL);
+        mCanvas.drawPath(mHourHandPath, mHourHandPaint);
+
+        //圈
+        mCircleRectF.set(getWidth() / 2 - 0.03f * mRadius, getHeight() / 2 - 0.03f * mRadius,
+                getWidth() / 2 + 0.03f * mRadius, getHeight() / 2 + 0.03f * mRadius);
+        mHourHandPaint.setStyle(Paint.Style.STROKE);
+        mHourHandPaint.setStrokeWidth(0.04f * mRadius);
+        mCanvas.drawArc(mCircleRectF, 0, 360, false, mHourHandPaint);
+        mCanvas.restore();
+
+    }
+
+    /*
+     * 分针
+     * */
+    private void drawMinuteNeedle() {
+        mCanvas.save();
+        mCanvas.translate(mCanvasTranslateX * 2f, mCanvasTranslateY * 2f);
+        mCanvas.rotate(mMinuteDegree, getWidth() / 2, getHeight() / 2);
+        mMinuteHandPath.reset();
+
+        float offset = mPaddingTop + mTextRect.height() / 2;
+        mMinuteHandPath.moveTo(getWidth() / 2 - 0.01f * mRadius, getHeight() / 2 - 0.03f * mRadius);
+        mMinuteHandPath.lineTo(getWidth() / 2 - 0.008f * mRadius, offset + 0.365f * mRadius);
+        mMinuteHandPath.quadTo(getWidth() / 2, offset + 0.345f * mRadius,
+                getWidth() / 2 + 0.008f * mRadius, offset + 0.365f * mRadius);
+        mMinuteHandPath.lineTo(getWidth() / 2 + 0.01f * mRadius, getHeight() / 2 - 0.03f * mRadius);
+        mMinuteHandPath.close();
+        mMinuteHandPaint.setStyle(Paint.Style.FILL);
+        mCanvas.drawPath(mMinuteHandPath, mMinuteHandPaint);
+
+        //针尾的圈
+        mCircleRectF.set(getWidth() / 2 - 0.03f * mRadius, getHeight() / 2 - 0.03f * mRadius,
+                getWidth() / 2 + 0.03f * mRadius, getHeight() / 2 + 0.03f * mRadius);
+        mMinuteHandPaint.setStyle(Paint.Style.STROKE);
+        mMinuteHandPaint.setStrokeWidth(0.02f * mRadius);
+        mCanvas.drawArc(mCircleRectF, 0, 360, false, mMinuteHandPaint);
+        mCanvas.restore();
+
+    }
+
+    /**
+     * 秒针
+     */
+    private void drawSecondNeedle() {
+        mCanvas.save();
+        mCanvas.rotate(mSecondDegree, getWidth() / 2, getHeight() / 2);
+        mSecondHandPath.reset();
+        float offset = mPaddingTop + mTextRect.height() / 2;
+
+        mSecondHandPath.moveTo(getWidth() / 2, offset + 0.26f * mRadius);
+        mSecondHandPath.lineTo(getWidth() / 2 - 0.05f * mRadius, offset + 0.34f * mRadius);
+        mSecondHandPath.lineTo(getWidth() / 2 + 0.05f * mRadius, offset + 0.34f * mRadius);
+        mSecondHandPath.close();
+        mSecondHandPaint.setColor(mLightColor);
+        mCanvas.drawPath(mSecondHandPath, mSecondHandPaint);
+        mCanvas.restore();
     }
 
     /*
@@ -227,10 +305,10 @@ public class MiClockView extends View {
         mScaleArcPaint.setShader(mSweepGradient);
 
         mCanvas.drawArc(mScaleArcRectF, 0, 360, false, mScaleArcPaint);//draw渐变圈
-        for (int i = 0; i < 200; i++) {//画背景色刻度线
+        for (int i = 0; i < 200; i++) {//画背景色刻度线（不懂为啥这里是200？）
             mCanvas.drawLine(getWidth() / 2, mPaddingTop + mScaleLength + mTextRect.height() / 2,
                     getWidth() / 2, mPaddingTop + 2 * mScaleLength + mTextRect.height() / 2, mScaleLinePaint);
-            mCanvas.rotate(1.8f, getWidth() / 2, getHeight() / 2);
+            mCanvas.rotate(1.8f, getWidth() / 2, getHeight() / 2);//旋转画布
         }
         mCanvas.restore();
     }
