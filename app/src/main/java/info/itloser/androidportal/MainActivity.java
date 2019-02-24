@@ -15,10 +15,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import info.itloser.androidportal.animation.AnimationActivity;
 import info.itloser.androidportal.components.goactivity.GoStandardActivity;
 import info.itloser.androidportal.components.gobroadcastreceiver.BroadcastActivity;
 import info.itloser.androidportal.components.goservice.ServiceActivity;
-import info.itloser.androidportal.custom.CustomViewActivity;
 import info.itloser.androidportal.custom.MyCustomPopupWindow;
 
 public class MainActivity extends AppCompatActivity {
@@ -51,7 +51,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case android.R.id.home:
 //                finish();
-                startActivity(new Intent(MainActivity.this, CustomViewActivity.class));
+//                startActivity(new Intent(MainActivity.this, CustomViewActivity.class));
+                startActivity(new Intent(MainActivity.this, AnimationActivity.class));
+
                 break;
 
         }

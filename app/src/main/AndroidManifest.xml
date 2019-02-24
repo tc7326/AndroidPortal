@@ -72,7 +72,8 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".custom.CustomViewActivity"></activity>
+        <activity android:name=".custom.CustomViewActivity" />
+        <activity android:name=".animation.AnimationActivity"></activity>
     </application>
 
 </manifest>
