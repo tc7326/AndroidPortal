@@ -145,10 +145,10 @@ public class AnimationActivity extends AppCompatActivity {
                 int currentValue = (int) animation.getAnimatedValue();
                 Log.i("dd", "current value is " + currentValue);
 
-                ViewGroup.LayoutParams params = listView.getLayoutParams();
+                ViewGroup.LayoutParams params = ivShow1.getLayoutParams();
                 params.height = (int) animation.getAnimatedValue();
-                listView.setLayoutParams(params);
-                listView.setLayoutParams(params);
+                ivShow1.setLayoutParams(params);
+                ivShow1.setLayoutParams(params);
             }
         });
         v0.start();
