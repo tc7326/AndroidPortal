@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:ordering="together">
+    <!--    android:ordering
+    该属性有如下两个可选值：
+    together：表示动画集合中的子动画同时播放。
+    sequentially：表示动画集合中的子动画按照书写的先后顺序依次播放。
+    该属性的默认值是together。-->
+
+    <objectAnimator
+        android:duration="1000"
+        android:propertyName="@string/layout"
+        android:repeatCount="-1"
+        android:repeatMode="reverse"
+        android:startOffset="1"
+        android:valueFrom="1"
+        android:valueTo="100"
+        android:valueType="intType" />
+    <!--    android:propertyName
+        String. Required. 属性动画作用的属性名称
+        android:duration
+        int. 表示动画的周期，默认值为300毫秒
+        android:valueFrom
+        float, int, or color. 表示属性的初始值
+        android:valueTo
+        float, int, or color. Required. 表示属性的结束值
+        android:startOffset
+        int. 表示调用start方法后延迟多少毫秒开始播放动画
+        android:repeatCount
+        int. 表示动画的重复次数，-1代表无限循环，默认值为0，表示动画只播放一次。
+        android:repeatMode
+        表示动画的重复模式，该属性有如下两个可选值：
+        repeat：表示连续重复
+        reverse：表示逆向重复
+        android:valueType
+        Keyword.  表示android:propertyName所指定属性的类型，有intType和floatType两个可选项，
+        分别代表属性的类型为整型和浮点型，另外如果属性是颜色值，那么就不需要指定
+        android:valueType属性，Android系统会自动对颜色类型的属性做处理。
+        默认值为floatType。-->
+
+    <animator
+        android:duration="1000"
+        android:propertyName="@string/layout"
+        android:repeatCount="-1"
+        android:repeatMode="reverse"
+        android:startOffset="1"
+        android:valueFrom="1"
+        android:valueTo="100"
+        android:valueType="intType" />
+
+
+</set>
