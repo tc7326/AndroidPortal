@@ -1,12 +1,11 @@
 package info.itloser.androidportal.animation;
 
-import android.animation.ValueAnimator;
+import android.animation.ObjectAnimator;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
@@ -109,6 +108,11 @@ public class AnimationActivity extends AppCompatActivity {
          * */
 
         /*
+         * ObjectAnimator    通过ObjectAnimator实现属性动画
+         * */
+
+
+        /*
          * ObjectAnimator   常用，直接应用在View上
          * */
 
@@ -122,43 +126,42 @@ public class AnimationActivity extends AppCompatActivity {
 //        set.playTogether(ObjectAnimator.ofFloat(ivShow1, "scaleX", 1, 0,1).setDuration(5000), ObjectAnimator.ofFloat(ivShow1, "scaleY", 1, 0,1).setDuration(5000));
 //        set.start();
 
-        //平移动画
+//        平移动画
 //        AnimatorSet set0 = new AnimatorSet();
 //        set0.playTogether(ObjectAnimator.ofFloat(ivShow1, "translationX", 1, 1000,100).setDuration(5000), ObjectAnimator.ofFloat(ivShow1, "translationY", 1, 0).setDuration(5000));
 //        set0.start();
 
         //旋转动画
-//        ivShow1.setPivotX(ivShow1.getWidth() / 2);
-//        ivShow1.setPivotY(ivShow1.getHeight() / 2);
-//        ObjectAnimator.ofFloat(ivShow1, "rotation", 0, 400).setDuration(5000).start();
+        ivShow1.setPivotX(ivShow1.getWidth() / 2);
+        ivShow1.setPivotY(ivShow1.getHeight() / 2);
+        ObjectAnimator.ofFloat(ivShow1, "rotation", 0, 400).setDuration(5000).start();
 
 
         /*
-         * ValueAnimator    负责属性动画的值的计算--------本质就是一个数值生成器
+         * ValueAnimator    通过ValueAnimator实现属性动画（负责属性动画的值的计算--------本质就是一个数值生成器）
+         * 只需提供初始和结束值，就会自动生成数值。
          * */
-        ValueAnimator v = ValueAnimator.ofFloat(0f, 1f, 0f);
-        ValueAnimator v0 = ValueAnimator.ofInt(128, 1, 128);
-        v0.setDuration(5000);
-        v0.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                int currentValue = (int) animation.getAnimatedValue();
-                Log.i("dd", "current value is " + currentValue);
-
-                ViewGroup.LayoutParams params = ivShow1.getLayoutParams();
-                params.height = (int) animation.getAnimatedValue();
-                ivShow1.setLayoutParams(params);
-                ivShow1.setLayoutParams(params);
-            }
-        });
-        v0.start();
+//        ValueAnimator v = ValueAnimator.ofFloat(0f, 1f, 0f);
+//        ValueAnimator v0 = ValueAnimator.ofInt(128, 1, 128);
+//        v0.setDuration(5000);
+//        v0.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+//            @Override
+//            public void onAnimationUpdate(ValueAnimator animation) {
+//                int currentValue = (int) animation.getAnimatedValue();
+//                Log.i("dd", "current value is " + currentValue);
+//                ViewGroup.LayoutParams params = ivShow1.getLayoutParams();
+//                params.height = (int) animation.getAnimatedValue();
+//                ivShow1.setLayoutParams(params);
+//                ivShow1.setLayoutParams(params);
+//            }
+//        });
+//        v0.start();
 
 
 //        LayoutTransition transition = new LayoutTransition();
 //        transition.setStagger(LayoutTransition.APPEARING, 30);
 //        transition.setDuration(LayoutTransition.APPEARING, transition.getDuration(LayoutTransition.APPEARING));
 //        transition.setStartDelay(LayoutTransition.APPEARING, 0);
-
 
     }
 
