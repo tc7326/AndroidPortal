@@ -1,16 +1,21 @@
 package info.itloser.androidportal.animation;
 
+import android.animation.LayoutTransition;
 import android.animation.ObjectAnimator;
+import android.animation.PropertyValuesHolder;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -25,6 +30,10 @@ public class AnimationActivity extends AppCompatActivity {
     ImageView imageView0;
     boolean isDrawableAnimation;
     AnimationDrawable animationDrawable;
+
+    Button btnAdd;
+    Button btnRem;
+    LinearLayout llFuck;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +57,6 @@ public class AnimationActivity extends AppCompatActivity {
                 R.anim.animation_all);
         loadAnimation.setFillAfter(true);
         findViewById(R.id.iv_show).startAnimation(loadAnimation);
-
 
         /*
          * 代码动态设置listview子view的入场动画
@@ -142,6 +150,9 @@ public class AnimationActivity extends AppCompatActivity {
          * 只需提供初始和结束值，就会自动生成数值。
          * */
 //        ValueAnimator v = ValueAnimator.ofFloat(0f, 1f, 0f);
+//        v.setDuration(1000);
+//        v.start();
+
 //        ValueAnimator v0 = ValueAnimator.ofInt(128, 1, 128);
 //        v0.setDuration(5000);
 //        v0.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -158,10 +169,69 @@ public class AnimationActivity extends AppCompatActivity {
 //        v0.start();
 
 
-//        LayoutTransition transition = new LayoutTransition();
-//        transition.setStagger(LayoutTransition.APPEARING, 30);
-//        transition.setDuration(LayoutTransition.APPEARING, transition.getDuration(LayoutTransition.APPEARING));
-//        transition.setStartDelay(LayoutTransition.APPEARING, 0);
+        btnAdd = findViewById(R.id.btn_add);
+        btnRem = findViewById(R.id.btn_rem);
+        llFuck = findViewById(R.id.ll_fuck);
+
+        //进场动画
+        ObjectAnimator appearingAnimator = ObjectAnimator
+                .ofPropertyValuesHolder(
+                        (Object) null,
+                        PropertyValuesHolder.ofFloat("scaleX", 0.0f, 1.0f),
+                        PropertyValuesHolder.ofFloat("scaleY", 0.0f, 1.0f),
+                        PropertyValuesHolder.ofFloat("alpha", 0, 1.0f));
+        //退场动画
+        ObjectAnimator disappearingAnimator = ObjectAnimator
+                .ofPropertyValuesHolder(
+                        (Object) null,
+                        PropertyValuesHolder.ofFloat("scaleX", 1.0f, 0.0f),
+                        PropertyValuesHolder.ofFloat("scaleY", 1.0f, 0.0f),
+                        PropertyValuesHolder.ofFloat("alpha", 1.0f, 0));
+
+        LayoutTransition transition = new LayoutTransition();
+
+        //子View进场时兄弟View
+        transition.setStagger(LayoutTransition.CHANGE_APPEARING, 30);
+        transition.setDuration(LayoutTransition.CHANGE_APPEARING, transition.getDuration(LayoutTransition.CHANGE_APPEARING));
+        transition.setStartDelay(LayoutTransition.CHANGE_APPEARING, 0);
+
+        //子View进场
+        transition.setAnimator(LayoutTransition.APPEARING, appearingAnimator);
+        transition.setDuration(LayoutTransition.APPEARING, transition.getDuration(LayoutTransition.APPEARING));
+        transition.setStartDelay(LayoutTransition.APPEARING, transition.getDuration(LayoutTransition.CHANGE_APPEARING));
+
+        //子View退场
+        transition.setAnimator(LayoutTransition.DISAPPEARING, disappearingAnimator);
+        transition.setDuration(LayoutTransition.DISAPPEARING, transition.getDuration(LayoutTransition.DISAPPEARING));
+        transition.setStartDelay(LayoutTransition.DISAPPEARING, 0);
+
+        //子View退场时兄弟View
+        transition.setStagger(LayoutTransition.CHANGE_DISAPPEARING, 30);
+        transition.setDuration(LayoutTransition.CHANGE_DISAPPEARING, transition.getDuration(LayoutTransition.CHANGE_DISAPPEARING));
+        transition.setStartDelay(LayoutTransition.CHANGE_DISAPPEARING, transition.getDuration(LayoutTransition.DISAPPEARING));
+
+        llFuck.setLayoutTransition(transition);
+
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ImageView imageView = new ImageView(AnimationActivity.this);
+                imageView.setImageResource(R.mipmap.ic_launcher);
+                imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(200, 200);
+                llFuck.addView(imageView, 0, layoutParams);
+            }
+        });
+
+        btnRem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int count = llFuck.getChildCount();
+                if (count > 0) {
+                    llFuck.removeViewAt(0);
+                }
+            }
+        });
 
     }
 
