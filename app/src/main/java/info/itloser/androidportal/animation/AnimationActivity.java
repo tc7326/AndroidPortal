@@ -3,10 +3,10 @@ package info.itloser.androidportal.animation;
 import android.animation.LayoutTransition;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
+import android.annotation.SuppressLint;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
@@ -35,6 +35,7 @@ public class AnimationActivity extends AppCompatActivity {
     Button btnRem;
     LinearLayout llFuck;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -144,7 +145,6 @@ public class AnimationActivity extends AppCompatActivity {
         ivShow1.setPivotY(ivShow1.getHeight() / 2);
         ObjectAnimator.ofFloat(ivShow1, "rotation", 0, 400).setDuration(5000).start();
 
-
         /*
          * ValueAnimator    通过ValueAnimator实现属性动画（负责属性动画的值的计算--------本质就是一个数值生成器）
          * 只需提供初始和结束值，就会自动生成数值。
@@ -168,20 +168,19 @@ public class AnimationActivity extends AppCompatActivity {
 //        });
 //        v0.start();
 
-
         btnAdd = findViewById(R.id.btn_add);
         btnRem = findViewById(R.id.btn_rem);
         llFuck = findViewById(R.id.ll_fuck);
 
         //进场动画
-        ObjectAnimator appearingAnimator = ObjectAnimator
+        @SuppressLint("ObjectAnimatorBinding") ObjectAnimator appearingAnimator = ObjectAnimator
                 .ofPropertyValuesHolder(
                         (Object) null,
                         PropertyValuesHolder.ofFloat("scaleX", 0.0f, 1.0f),
                         PropertyValuesHolder.ofFloat("scaleY", 0.0f, 1.0f),
                         PropertyValuesHolder.ofFloat("alpha", 0, 1.0f));
         //退场动画
-        ObjectAnimator disappearingAnimator = ObjectAnimator
+        @SuppressLint("ObjectAnimatorBinding") ObjectAnimator disappearingAnimator = ObjectAnimator
                 .ofPropertyValuesHolder(
                         (Object) null,
                         PropertyValuesHolder.ofFloat("scaleX", 1.0f, 0.0f),
@@ -232,6 +231,7 @@ public class AnimationActivity extends AppCompatActivity {
                 }
             }
         });
+
 
     }
 
