@@ -73,7 +73,8 @@
         </receiver>
 
         <activity android:name=".custom.CustomViewActivity" />
-        <activity android:name=".animation.AnimationActivity"></activity>
+        <activity android:name=".animation.AnimationActivity" />
+        <activity android:name=".GestureActivity"></activity>
     </application>
 
 </manifest>

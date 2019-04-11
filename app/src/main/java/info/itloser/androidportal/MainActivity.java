@@ -2,98 +2,83 @@ package info.itloser.androidportal;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.constraint.ConstraintLayout;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
+
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.BaseViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
-import info.itloser.androidportal.animation.AnimationActivity;
-import info.itloser.androidportal.components.goactivity.GoStandardActivity;
-import info.itloser.androidportal.components.gobroadcastreceiver.BroadcastActivity;
-import info.itloser.androidportal.components.goservice.ServiceActivity;
-import info.itloser.androidportal.custom.MyCustomPopupWindow;
+import butterknife.BindView;
+import info.itloser.androidportal.components.goactivity.GoSingleInstanceActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    //数据集合
-    private List<String> strings = new ArrayList<String>();
-    MyCustomPopupWindow myCustomPopupWindow;
+    @BindView(R.id.rv_main_list)
+    RecyclerView rvMainList;
 
-    ConstraintLayout clMain;
-    Button btnW;
+    List<MainBean> mainBeans = new ArrayList<>();
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.go_activity:
-                startActivity(new Intent(MainActivity.this, GoStandardActivity.class));
-                break;
-            case R.id.go_service:
-                startActivity(new Intent(MainActivity.this, ServiceActivity.class));
-                break;
-            case R.id.go_broadcast:
-                startActivity(new Intent(MainActivity.this, BroadcastActivity.class));
-                break;
-            case android.R.id.home:
-//                finish();
-//                startActivity(new Intent(MainActivity.this, CustomViewActivity.class));
-                startActivity(new Intent(MainActivity.this, AnimationActivity.class));
-
-                break;
-
-        }
-        return super.onOptionsItemSelected(item);
-    }
+    MainAdapter mainAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        butterknife.ButterKnife.bind(this);
 
-        strings.add("光年之外");
-        strings.add("倒数");
-        strings.add("睡皇后");
-        strings.add("我的秘密");
-        strings.add("岩石里的花");
-        strings.add("再见");
+        mainBeans.add(new MainBean("d", 0xff456789, GoSingleInstanceActivity.class));
+        mainBeans.add(new MainBean("d", 0xff123456, null));
+        mainBeans.add(new MainBean("d", 0xff789456, null));
+        mainBeans.add(new MainBean("d", 0xff456456, null));
+        mainBeans.add(new MainBean("d", 0xff456123, GestureActivity.class));
 
-        clMain = findViewById(R.id.cl_main);
-        btnW = findViewById(R.id.btn_w);
-        btnW.setOnClickListener(new View.OnClickListener() {
+        mainAdapter = new MainAdapter(R.layout.item_main_rv, mainBeans);
+        mainAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
-            public void onClick(View v) {
-                myCustomPopupWindow.show(clMain);
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                if (mainBeans.get(position).activity != null)
+                    startActivity(new Intent(MainActivity.this, mainBeans.get(position).activity));
             }
         });
 
-        /*
-         * this      上下文
-         * title     标题
-         * strings   集合
-         * positon   默认选中
-         * */
-        myCustomPopupWindow = new MyCustomPopupWindow(this, "这是标题", strings, 2);
-        myCustomPopupWindow.setOnMyCustomPopWindowSaveListener(new MyCustomPopupWindow.OnMyCustomPopWindowSaveListener() {
-            @Override
-            public void getItem(int i) {
-                Toast.makeText(MainActivity.this, strings.get(i), Toast.LENGTH_SHORT).show();
-            }
-        });
+
+        rvMainList.setLayoutManager(new LinearLayoutManager(this));
+        rvMainList.setAdapter(mainAdapter);
+
+
     }
+
+    class MainBean {
+        String title;
+        int color;
+        Class activity;
+
+        MainBean(String title, int color, Class activity) {
+            this.title = title;
+            this.color = color;
+            this.activity = activity;
+        }
+
+
+    }
+
+    class MainAdapter extends BaseQuickAdapter<MainBean, BaseViewHolder> {
+
+        MainAdapter(int layoutResId, @Nullable List<MainBean> data) {
+            super(layoutResId, data);
+        }
+
+        @Override
+        protected void convert(BaseViewHolder helper, MainBean item) {
+            helper.setText(R.id.tv_main_item, item.title);
+            helper.setBackgroundColor(R.id.tv_main_item, item.color);
+        }
+    }
+
 }
