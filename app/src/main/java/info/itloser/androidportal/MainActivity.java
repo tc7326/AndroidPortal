@@ -35,8 +35,8 @@ public class MainActivity extends AppCompatActivity {
         mainBeans.add(new MainBean("d", 0xff456789, GoSingleInstanceActivity.class));
         mainBeans.add(new MainBean("d", 0xff123456, null));
         mainBeans.add(new MainBean("d", 0xff789456, null));
-        mainBeans.add(new MainBean("d", 0xff456456, null));
-        mainBeans.add(new MainBean("d", 0xff456123, GestureActivity.class));
+        mainBeans.add(new MainBean("友盟分享/登录", 0xff456456, UmengShareActivity.class));
+        mainBeans.add(new MainBean("手势监听", 0xff456123, GestureActivity.class));
 
         mainAdapter = new MainAdapter(R.layout.item_main_rv, mainBeans);
         mainAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
@@ -47,10 +47,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         rvMainList.setLayoutManager(new LinearLayoutManager(this));
         rvMainList.setAdapter(mainAdapter);
-
 
     }
 
