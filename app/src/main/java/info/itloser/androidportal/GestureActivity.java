@@ -18,6 +18,7 @@ public class GestureActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gesture);
         ButterKnife.bind(this);
@@ -30,8 +31,19 @@ public class GestureActivity extends BaseActivity {
         GestureDetector.SimpleOnGestureListener listener = new GestureDetector.SimpleOnGestureListener() {
 
             @Override
-            public boolean onSingleTapConfirmed(MotionEvent e) {
+            public boolean onContextClick(MotionEvent e) {
+                Log.i("Touch", "外部设备监听，耳机");
+                return super.onContextClick(e);
+            }
 
+            @Override
+            public boolean onSingleTapUp(MotionEvent e) {
+                Log.i("Touch", "这是一波单击抬起");
+                return super.onSingleTapUp(e);
+            }
+
+            @Override
+            public boolean onSingleTapConfirmed(MotionEvent e) {
                 Log.i("Touch", "这是一波单击");
                 return false;
             }
@@ -50,6 +62,9 @@ public class GestureActivity extends BaseActivity {
                         break;
                     case MotionEvent.ACTION_DOWN:
                         Log.i("Touch", "第二次按下");
+                        break;
+                    case MotionEvent.ACTION_MOVE:
+                        Log.i("Touch", "第二次按下在移动");
                         break;
                 }
                 return super.onDoubleTapEvent(e);
@@ -78,11 +93,22 @@ public class GestureActivity extends BaseActivity {
                 Log.i("Touch", "滚动");
                 return super.onScroll(e1, e2, distanceX, distanceY);
             }
+
+            @Override
+            public void onShowPress(MotionEvent e) {
+                Log.i("Touch", "按下被识别[触摸反馈]");
+                super.onShowPress(e);
+            }
+
         };
 
         //手势检测
         final GestureDetector detector = new GestureDetector(GestureActivity.this, listener);
+//        detector.setIsLongpressEnabled(false);//禁用长按事件
+//        detector.isLongpressEnabled();//是否禁用了长按事件
 
+
+        //
         tvGesture.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -97,7 +123,7 @@ public class GestureActivity extends BaseActivity {
          * */
 
         //缩放手势监听
-        ScaleGestureDetector.SimpleOnScaleGestureListener listener1 = new ScaleGestureDetector.SimpleOnScaleGestureListener(){
+        ScaleGestureDetector.SimpleOnScaleGestureListener listener1 = new ScaleGestureDetector.SimpleOnScaleGestureListener() {
 
             @Override
             public boolean onScaleBegin(ScaleGestureDetector detector) {
@@ -116,6 +142,4 @@ public class GestureActivity extends BaseActivity {
         };
 
     }
-
-
 }

@@ -1,5 +1,6 @@
 package info.itloser.androidportal;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -24,34 +25,39 @@ public class MySGView extends View {
 
     public MySGView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+        Log.i(TAG, "初始化MySGView");
         initSGD();
     }
 
     private void initSGD() {
-        scaleGestureDetector = new ScaleGestureDetector(getContext(),new ScaleGestureDetector.SimpleOnScaleGestureListener(){
+        scaleGestureDetector = new ScaleGestureDetector(getContext(), new ScaleGestureDetector.SimpleOnScaleGestureListener() {
             @Override
             public boolean onScale(ScaleGestureDetector detector) {
                 Log.i(TAG, "focusX = " + detector.getFocusX());       // 缩放中心，x坐标
-                Log.i(TAG, "focusY = " + detector.getFocusY());       // 缩放中心y坐标
-                Log.i(TAG, "scale = " + detector.getScaleFactor());   // 缩放因子
+                Log.i(TAG, "focusY = " + detector.getFocusY());       // 缩放中心，y坐标
+                Log.i(TAG, "scale = " + detector.getScaleFactor());   // 缩放因子，比例
+
                 return super.onScale(detector);
             }
 
             @Override
             public boolean onScaleBegin(ScaleGestureDetector detector) {
+                Log.i(TAG, "onScaleBegin");
                 return super.onScaleBegin(detector);
             }
 
             @Override
             public void onScaleEnd(ScaleGestureDetector detector) {
+                Log.i(TAG, "onScaleEnd");
                 super.onScaleEnd(detector);
             }
         });
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         scaleGestureDetector.onTouchEvent(event);
-        return super.onTouchEvent(event);
+        return true;
     }
 }
