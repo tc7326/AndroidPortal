@@ -109,8 +109,6 @@ public class GestureActivity extends BaseActivity {
                 return super.onScale(detector);
             }
 
-
-
             @Override
             public void onScaleEnd(ScaleGestureDetector detector) {
                 super.onScaleEnd(detector);
