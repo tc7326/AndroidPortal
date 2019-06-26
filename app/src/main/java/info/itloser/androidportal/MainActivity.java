@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -16,6 +17,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import info.itloser.androidportal.components.goactivity.GoSingleInstanceActivity;
+import info.itloser.androidportal.memory.MemoryActivity;
+import info.itloser.androidportal.socket.MyWebSocketService;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,16 +30,17 @@ public class MainActivity extends AppCompatActivity {
     MainAdapter mainAdapter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         butterknife.ButterKnife.bind(this);
 
         mainBeans.add(new MainBean("d", 0xff456789, GoSingleInstanceActivity.class));
-        mainBeans.add(new MainBean("d", 0xff123456, null));
-        mainBeans.add(new MainBean("d", 0xff789456, null));
+        mainBeans.add(new MainBean("日历", 0xff123456, RiLiActivity.class));
+        mainBeans.add(new MainBean("悬浮框", 0xff789456, null));
         mainBeans.add(new MainBean("友盟分享/登录", 0xff456456, UmengShareActivity.class));
         mainBeans.add(new MainBean("手势监听", 0xff456123, GestureActivity.class));
+        mainBeans.add(new MainBean("图片内存等", 0xff456789, MemoryActivity.class));
 
         mainAdapter = new MainAdapter(R.layout.item_main_rv, mainBeans);
         mainAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
@@ -44,6 +48,14 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 if (mainBeans.get(position).activity != null)
                     startActivity(new Intent(MainActivity.this, mainBeans.get(position).activity));
+
+                if (position == 2) {
+//                    FloatWindow.get().show();
+                    Log.i("dd", "启动service");
+//                    startService(new Intent(MainActivity.this, FloatViewService.class));
+                    startService(new Intent(MainActivity.this, MyWebSocketService.class));
+                }
+
             }
         });
 

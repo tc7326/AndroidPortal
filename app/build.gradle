@@ -29,16 +29,15 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation 'com.android.support:recyclerview-v7:26.1.0'
-
-//    DBRVAH
+    //    DBRVAH
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.40'
-//    knife
+    //    knife
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
-
-//    u-meng
+    //    u-meng
     implementation 'com.umeng.sdk:common:1.5.1'
-    implementation 'com.umeng.sdk:analytics:7.5.0'//可有可无
+    implementation 'com.umeng.sdk:analytics:7.5.0'
+    //可有可无
     //友盟社会化分享
     implementation 'com.umeng.sdk:share-core:6.9.1'
     implementation 'com.umeng.sdk:share-qq:6.9.1.1'
@@ -46,5 +45,13 @@ dependencies {
     implementation 'com.umeng.sdk:share-sina:6.9.1'
     //分享面板
     implementation 'com.umeng.sdk:shareboard-widget:6.9.1'
-
+    implementation project(':floatwindow')
+    //    区间日历
+    implementation 'com.haibin:calendarview:3.6.2'
+    //websocket
+    //    implementation 'com.github.NaikSoftware:StompProtocolAndroid:1.1.1'
+    //    implementation "org.java-websocket:Java-WebSocket:1.4.0"
+    //okhttp3.5以后启用了对websocket的支持
+    implementation 'com.squareup.okhttp3:okhttp:3.8.1'
+    implementation 'com.github.bumptech.glide:glide:3.7.0'
 }

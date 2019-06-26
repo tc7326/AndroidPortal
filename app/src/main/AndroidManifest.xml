@@ -9,8 +9,7 @@
     <!-- 注册刚才声明的权限  接收广播的权限 -->
     <uses-permission android:name="info.itloser.androidportal.AUTO_PERMISSION" />
 
-
-    <!--必须权限-->
+    <!-- 必须权限 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
@@ -20,7 +19,6 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
-
 
     <application
         android:name=".BaseApplication"
@@ -88,13 +86,26 @@
         <activity android:name=".custom.CustomViewActivity" />
         <activity android:name=".animation.AnimationActivity" />
         <activity android:name=".GestureActivity" />
-        <activity android:name=".UmengShareActivity"/>
+        <activity android:name=".UmengShareActivity" />
         <activity
             android:name=".wxapi.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity android:name=".animation.RecyclerViewAnimationActivity" />
+        <activity android:name=".RiLiActivity" />
+
+        <service
+            android:name=".FloatViewService"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".socket.MyWebSocketService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".memory.MemoryActivity"></activity>
     </application>
 
 </manifest>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RiLiActivity">
+
+    <com.haibin.calendarview.CalendarView
+        android:id="@+id/cv_calendar_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:current_day_lunar_text_color="@color/app_color"
+        app:current_day_text_color="@color/app_color"
+        app:max_year="2028"
+        app:min_year="2004"
+        app:month_view="info.itloser.androidportal.RiMonthView"
+        app:month_view_show_mode="mode_fix"
+        app:scheme_text_color="#333"
+        app:selected_text_color="@color/white"
+        app:selected_theme_color="@color/app_color"
+        app:week_start_with="mon" />
+
+    <!--app:week_view="info.itloser.androidportal.RiWeekView"-->
+
+</LinearLayout>
