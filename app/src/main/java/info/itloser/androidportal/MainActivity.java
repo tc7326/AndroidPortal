@@ -18,6 +18,8 @@ import java.util.List;
 import butterknife.BindView;
 import info.itloser.androidportal.components.goactivity.GoSingleInstanceActivity;
 import info.itloser.androidportal.memory.MemoryActivity;
+import info.itloser.androidportal.memory.PhotoWallActivity;
+import info.itloser.androidportal.qrcode.QRActivity;
 import info.itloser.androidportal.socket.MyWebSocketService;
 
 public class MainActivity extends AppCompatActivity {
@@ -41,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
         mainBeans.add(new MainBean("友盟分享/登录", 0xff456456, UmengShareActivity.class));
         mainBeans.add(new MainBean("手势监听", 0xff456123, GestureActivity.class));
         mainBeans.add(new MainBean("图片内存等", 0xff456789, MemoryActivity.class));
+        mainBeans.add(new MainBean("照片墙", 0xff789456, PhotoWallActivity.class));
+        mainBeans.add(new MainBean("二维码识别", 0xff456123, QRActivity.class));
 
         mainAdapter = new MainAdapter(R.layout.item_main_rv, mainBeans);
         mainAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {

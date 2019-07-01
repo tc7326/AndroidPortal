@@ -42,11 +42,11 @@ public class LocalService extends Service {
         }.start();
     }
 
-    @Override
-    public void onStart(Intent intent, int startId) {
-        Log.i("dd", "onStart");
-        super.onStart(intent, startId);
-    }
+//    @Override
+//    public void onStart(Intent intent, int startId) {
+//        Log.i("dd", "onStart");
+//        super.onStart(intent, startId);
+//    }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {

@@ -31,6 +31,9 @@
     <string name="send_ordered_broadcast">发送一坨有序广播</string>
     <string name="send_local_broadcast">发送一条本地广播</string>
     <string name="send_permission_broadcast">发送一条带权限的广播</string>
+    <string name="image_url">image_url</string>
+    <string name="border_bottom">border_bottom</string>
+    <string name="border_top">border_top</string>
 
 
 </resources>

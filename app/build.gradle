@@ -45,7 +45,7 @@ dependencies {
     implementation 'com.umeng.sdk:share-sina:6.9.1'
     //分享面板
     implementation 'com.umeng.sdk:shareboard-widget:6.9.1'
-    implementation project(':floatwindow')
+    //    implementation project(':floatwindow')
     //    区间日历
     implementation 'com.haibin:calendarview:3.6.2'
     //websocket
@@ -54,4 +54,5 @@ dependencies {
     //okhttp3.5以后启用了对websocket的支持
     implementation 'com.squareup.okhttp3:okhttp:3.8.1'
     implementation 'com.github.bumptech.glide:glide:3.7.0'
+    implementation project(':qrcodereaderview')
 }

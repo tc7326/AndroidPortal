@@ -60,7 +60,7 @@ public class FloatViewService extends Service implements View.OnTouchListener {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             wmParams.type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
         } else {
-            wmParams.type = WindowManager.LayoutParams.TYPE_PHONE;
+            wmParams.type = WindowManager.LayoutParams.TYPE_TOAST;
         }
 
         //设置图片格式，效果为背景透明
