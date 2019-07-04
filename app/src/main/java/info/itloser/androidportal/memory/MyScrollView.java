@@ -1,14 +1,19 @@
 package info.itloser.androidportal.memory;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.Toast;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -18,6 +23,7 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -27,7 +33,7 @@ import info.itloser.androidportal.R;
  * author：zhaoliangwang on 2019/6/28 10:38
  * email：tc7326@126.com
  */
-public class MyScrollView extends ScrollView {
+public class MyScrollView extends ScrollView implements View.OnTouchListener {
 
     //每页要加载的图片数量
     public static final int PAGE_SIZE = 15;
@@ -58,21 +64,139 @@ public class MyScrollView extends ScrollView {
 
     private List<ImageView> imageViewList = new ArrayList<ImageView>();//记录所有界面的图片，随时控制释放图片
 
+    @SuppressLint("HandlerLeak")
+    private static Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            MyScrollView myScrollView = (MyScrollView) msg.obj;
+            int scrollY = myScrollView.getScrollY();
+            //如果当前的滚动位置和上次相同，表示已停止滚动
+            if (scrollY == lastScrollY) {
+                //当滚动到最底部，并且没有正在下载的任务时，开始加载下一页图片
+                if (scrollViewHeight + scrollY >= scrollLayout.getHeight() && taskCollection.isEmpty()) {
+                    myScrollView.loadMoreImages();
+                }
+                myScrollView.checkVisiblity();
+            } else {
+                lastScrollY = scrollY;
+                Message message = new Message();
+                message.obj = myScrollView;
+                //5毫秒后再次对滚动位置进行判断
+                handler.sendMessageDelayed(message, 5);
+            }
+            super.handleMessage(msg);
+        }
+    };
 
+    /*
+     * 初始化构造
+     * */
     public MyScrollView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        imageLoader = ImageLoader.getInstance();
+        taskCollection = new HashSet<LoadImageTask>();
+        setOnTouchListener(this);
+    }
+
+    /*
+     * 进行一些关键性的初始化操作，获取MyScrollView的高度，以及得到第一列的宽度值，并在这里开始加载第一页的图片
+     * */
+    @Override
+    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        super.onLayout(changed, l, t, r, b);
+        if (changed && !loadOnce) {
+            scrollViewHeight = getHeight();
+            scrollLayout = getChildAt(0);
+            firstColumn = findViewById(R.id.first_column);
+            secondColumn = findViewById(R.id.second_column);
+            thirdColumn = findViewById(R.id.third_column);
+            columnWidth = firstColumn.getWidth();
+            loadOnce = true;
+            loadMoreImages();
+        }
+    }
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_UP) {
+            Message message = new Message();
+            message.obj = this;
+            handler.sendMessageDelayed(message, 5);
+        }
+        return false;
+    }
+
+    /*
+     * 开始加载下一页的图片，每张图片都会开启一个异步线程去下载。
+     * */
+    public void loadMoreImages() {
+        if (hasSDCard()) {
+            int startIndex = page * PAGE_SIZE;
+            int endIndex = page * PAGE_SIZE + PAGE_SIZE;
+            if (startIndex < Imgs.imageUrls.length) {
+                Toast.makeText(getContext(), "正在加载...", Toast.LENGTH_SHORT).show();
+                if (endIndex > Imgs.imageUrls.length) {
+                    endIndex = Imgs.imageUrls.length;
+                }
+                for (int i = startIndex; i < endIndex; i++) {
+                    LoadImageTask task = new LoadImageTask();
+                    taskCollection.add(task);
+                    task.execute(Imgs.imageUrls[i]);
+                }
+                page++;
+            } else {
+                Toast.makeText(getContext(), "已没有更多图片", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(getContext(), "未发现SD卡", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    /*
+     * 遍历ivlist中的每张图片，对图片的可见性进行检查，如果图片已离开屏幕，将图片替换成空图
+     * */
+    public void checkVisiblity() {
+        for (int i = 0; i < imageViewList.size(); i++) {
+            ImageView imageView = imageViewList.get(i);
+            int borderTop = (Integer) imageView.getTag(R.string.border_top);
+            int borderBottom = (Integer) imageView.getTag(R.string.border_bottom);
+            if (borderBottom > getScrollY() && borderTop < getScrollY() + scrollViewHeight) {
+                String imageUrl = (String) imageView.getTag(R.string.image_url);
+                Bitmap bitmap = imageLoader.getBitmapFromMemoryCache(imageUrl);
+                if (bitmap != null) {
+                    imageView.setImageBitmap(bitmap);
+                } else {
+                    LoadImageTask task = new LoadImageTask(imageView);
+                    task.execute(imageUrl);
+                }
+            } else {
+                imageView.setImageResource(R.drawable.error);
+            }
+        }
+    }
+
+    /*
+     * 判断手机是否有sd卡
+     * */
+    private boolean hasSDCard() {
+        return Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState());
     }
 
     /*
      * 这是一个异步任务类
      * */
+    @SuppressLint("StaticFieldLeak")
     class LoadImageTask extends AsyncTask<String, Void, Bitmap> {
 
         private String mImageUrl;//图片的url地址
 
-        private ImageView mImageView;
+        private ImageView mImageView;//可复用iv
 
         public LoadImageTask() {
+        }
+
+        public LoadImageTask(ImageView mImageView) {
+            this.mImageView = mImageView;
         }
 
         @Override
@@ -93,10 +217,6 @@ public class MyScrollView extends ScrollView {
                 addImage(bitmap, columnWidth, scaledHeight);
             }
             taskCollection.remove(this);
-        }
-
-        public LoadImageTask(ImageView mImageView) {
-            this.mImageView = mImageView;
         }
 
         /*
@@ -151,18 +271,18 @@ public class MyScrollView extends ScrollView {
                 imageView.setTag(R.string.border_top, thirdColumnHeight);
                 thirdColumnHeight += imageHeight;
                 imageView.setTag(R.string.border_bottom, thirdColumnHeight);
-                return firstColumn;
+                return thirdColumn;
             } else {
                 if (secondColumnHeight <= thirdColumnHeight) {
                     imageView.setTag(R.string.border_top, secondColumnHeight);
                     secondColumnHeight += imageHeight;
                     imageView.setTag(R.string.border_bottom, secondColumnHeight);
-                    return firstColumn;
+                    return secondColumn;
                 }
                 imageView.setTag(R.string.border_top, thirdColumnHeight);
                 thirdColumnHeight += imageHeight;
                 imageView.setTag(R.string.border_bottom, thirdColumnHeight);
-                return firstColumn;
+                return thirdColumn;
             }
         }
 

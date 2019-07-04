@@ -9,9 +9,8 @@
     <!-- 注册刚才声明的权限  接收广播的权限 -->
     <uses-permission android:name="info.itloser.androidportal.AUTO_PERMISSION" />
 
-    <!--拍照权限-->
+    <!-- 拍照权限 -->
     <uses-permission android:name="android.permission.CAMERA" />
-
     <!-- 必须权限 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -116,8 +115,14 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".qrcode.QRActivity"/>
-        <activity android:launchMode="singleInstance" android:name=".qrcode.TextActivity"/>
+        <activity android:name=".qrcode.QRActivity" />
+        <activity
+            android:name=".qrcode.TextActivity"
+            android:launchMode="singleInstance" />
+        <activity android:name=".memory.EasyPhotoWallActivity" />
+        <activity android:name=".memory.DiskLruCacheActivity" />
+        <activity android:name=".file_sql.FileActivity" />
+        <activity android:name=".file_sql.SerialActivity"></activity>
     </application>
 
 </manifest>

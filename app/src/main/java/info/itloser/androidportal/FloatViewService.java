@@ -111,7 +111,6 @@ public class FloatViewService extends Service implements View.OnTouchListener {
                 StartX = x;
                 StartY = y;
 //                Log.i("startP", "startX" + mTouchStartX + "====startY" + mTouchStartY);
-
                 break;
             case MotionEvent.ACTION_MOVE:
                 if (Math.abs(x - StartX) > 5 && Math.abs(y - StartY) > 5) {
