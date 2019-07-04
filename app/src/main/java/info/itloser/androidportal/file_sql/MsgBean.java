@@ -14,7 +14,7 @@ public class MsgBean implements Serializable {
         this.content = content;
     }
 
-    private Integer id;
+    private Integer id;//private transient Integer id;加上transient关键字可以阻止该变量被序列化到文件中
     private String title;
     private String content;
 
