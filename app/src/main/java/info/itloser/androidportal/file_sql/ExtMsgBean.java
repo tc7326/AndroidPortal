@@ -10,8 +10,8 @@ import java.io.ObjectOutput;
  * email：tc7326@126.com
  */
 public class ExtMsgBean implements Externalizable {
-    //实现反序列化接口，和MsgBean序列化接口对比
 
+    //实现反序列化接口，和MsgBean序列化接口对比
 
     public ExtMsgBean() {
     }

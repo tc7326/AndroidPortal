@@ -19,7 +19,7 @@ public class PhotoWallActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo_wall);
         ButterKnife.bind(this);
-
+        
         adapter = new PhotoVallAdapter(this, 0, Imgs.imageThumbUrls, gvMain);
         gvMain.setAdapter(adapter);
 

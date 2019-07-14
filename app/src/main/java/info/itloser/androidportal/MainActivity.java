@@ -53,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
         mainBeans.add(new MainBean("硬盘缓存", 0xff456123, DiskLruCacheActivity.class));
         mainBeans.add(new MainBean("文件和SQL", 0xff123456, FileActivity.class));
         mainBeans.add(new MainBean("Serial", 0xff123456, SerialActivity.class));
+        mainBeans.add(new MainBean("Handler", 0xff456789, HandlerActivity.class));
+        mainBeans.add(new MainBean("Thread-and-Runnable", 0xff789456, ThreadRunnableActivity.class));
 
         mainAdapter = new MainAdapter(R.layout.item_main_rv, mainBeans);
         mainAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
