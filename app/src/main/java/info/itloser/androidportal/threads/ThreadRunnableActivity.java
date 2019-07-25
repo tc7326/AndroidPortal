@@ -1,4 +1,4 @@
-package info.itloser.androidportal;
+package info.itloser.androidportal.threads;
 
 import android.annotation.SuppressLint;
 import android.os.AsyncTask;
@@ -14,6 +14,8 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
+
+import info.itloser.androidportal.R;
 
 public class ThreadRunnableActivity extends AppCompatActivity {
 

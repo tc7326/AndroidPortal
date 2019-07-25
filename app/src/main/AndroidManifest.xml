@@ -127,10 +127,11 @@
         <activity android:name=".memory.DiskLruCacheActivity" />
         <activity android:name=".file_sql.FileActivity" />
         <activity android:name=".file_sql.SerialActivity" />
-        <activity android:name=".HandlerActivity" />
-        <activity android:name=".ThreadRunnableActivity" />
+        <activity android:name=".threads.HandlerActivity" />
+        <activity android:name=".threads.ThreadRunnableActivity" />
         <activity android:name=".CalendarProviders.CalendarTaskActivity" />
-        <activity android:name=".bitmaps.ViewToBitmapActivity"></activity>
+        <activity android:name=".bitmaps.ViewToBitmapActivity" />
+        <activity android:name=".threads.SynchronizedActivity"></activity>
     </application>
 
 </manifest>

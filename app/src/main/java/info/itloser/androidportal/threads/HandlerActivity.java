@@ -1,4 +1,4 @@
-package info.itloser.androidportal;
+package info.itloser.androidportal.threads;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import info.itloser.androidportal.R;
 
 public class HandlerActivity extends AppCompatActivity {
 
