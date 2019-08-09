@@ -26,10 +26,15 @@ import info.itloser.androidportal.memory.EasyPhotoWallActivity;
 import info.itloser.androidportal.memory.MemoryActivity;
 import info.itloser.androidportal.memory.PhotoWallActivity;
 import info.itloser.androidportal.qrcode.QRActivity;
+import info.itloser.androidportal.retrofits.WanAndroidActivity;
+import info.itloser.androidportal.rxjavas.RxJavaActivity;
 import info.itloser.androidportal.socket.MyWebSocketService;
+import info.itloser.androidportal.socket.VVService;
 import info.itloser.androidportal.threads.HandlerActivity;
 import info.itloser.androidportal.threads.SynchronizedActivity;
 import info.itloser.androidportal.threads.ThreadRunnableActivity;
+import info.itloser.androidportal.threads.ThreadsWaitActivity;
+import info.itloser.androidportal.threads.VideoWaitActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -63,6 +68,10 @@ public class MainActivity extends AppCompatActivity {
         mainBeans.add(new MainBean("日历事件", 0xff456789, CalendarTaskActivity.class));
         mainBeans.add(new MainBean("view保存bitmap", 0xffff4081, ViewToBitmapActivity.class));
         mainBeans.add(new MainBean("Synchronized锁", 0xFFF5C71E, SynchronizedActivity.class));
+        mainBeans.add(new MainBean("wait、notify、notifyAll", 0xff789456, ThreadsWaitActivity.class));
+        mainBeans.add(new MainBean("CountDownLatch多线程并发", 0xff123456, VideoWaitActivity.class));
+        mainBeans.add(new MainBean("Retrofit+OkHttp", 0xFFF5C71E, WanAndroidActivity.class));
+        mainBeans.add(new MainBean("RxJava", 0xffff4081, RxJavaActivity.class));
 
         mainAdapter = new MainAdapter(R.layout.item_main_rv, mainBeans);
         mainAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
@@ -83,6 +92,8 @@ public class MainActivity extends AppCompatActivity {
 
         rvMainList.setLayoutManager(new LinearLayoutManager(this));
         rvMainList.setAdapter(mainAdapter);
+
+        startService(new Intent(this, VVService.class));//websocket测试
 
     }
 

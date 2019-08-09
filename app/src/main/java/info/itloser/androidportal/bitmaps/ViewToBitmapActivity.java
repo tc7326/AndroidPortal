@@ -11,6 +11,7 @@ import android.provider.MediaStore;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,10 +40,17 @@ public class ViewToBitmapActivity extends AppCompatActivity {
     ConstraintLayout clMain;
 
     Context context;
+    @BindView(R.id.tv_rl_0)
+    TextView tvRl0;
+    @BindView(R.id.tv_rl_1)
+    TextView tvRl1;
+    @BindView(R.id.rl_main)
+    RelativeLayout rlMain;
 
     //笔记：
     //当VIEW.GONE起来时，是拿不到Bitmap的。
     //当VIEW.INVISIBLE时，可以拿到Bitmap。
+    //保存的是当前View的bitmap不管上层是否有视图或者下层是否有视图，仅保存当前View的视图
     //默认是不带透明度通道的。具体还不会
 
     @Override
@@ -59,16 +67,16 @@ public class ViewToBitmapActivity extends AppCompatActivity {
 
 
         //保存图片
-        clMain.setDrawingCacheEnabled(true);
-        clMain.buildDrawingCache();
+        tvRl1.setDrawingCacheEnabled(true);
+        tvRl1.buildDrawingCache();
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                final Bitmap bmp = clMain.getDrawingCache(); // 获取图片
+                final Bitmap bmp = tvRl1.getDrawingCache(); // 获取图片
                 long nowTime = new Date().getTime();
 
                 savePicture(bmp, nowTime + ".png");// 保存图片
-                clMain.destroyDrawingCache(); // 保存过后释放资源
+                tvRl1.destroyDrawingCache(); // 保存过后释放资源
             }
         }, 1000);
 

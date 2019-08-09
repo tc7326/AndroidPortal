@@ -118,6 +118,10 @@
             android:name=".adb.ADBService"
             android:enabled="true"
             android:exported="true" />
+        <service
+            android:name=".socket.VVService"
+            android:enabled="true"
+            android:exported="true" />
 
         <activity android:name=".qrcode.QRActivity" />
         <activity
@@ -131,7 +135,12 @@
         <activity android:name=".threads.ThreadRunnableActivity" />
         <activity android:name=".CalendarProviders.CalendarTaskActivity" />
         <activity android:name=".bitmaps.ViewToBitmapActivity" />
-        <activity android:name=".threads.SynchronizedActivity"></activity>
+        <activity android:name=".threads.SynchronizedActivity" />
+        <activity android:name=".threads.ThreadsWaitActivity" />
+        <activity android:name=".threads.VideoWaitActivity" />
+        <activity android:name=".retrofits.WanAndroidActivity" />
+        <activity android:name=".webview.WebViewActivity" />
+        <activity android:name=".rxjavas.RxJavaActivity"></activity>
     </application>
 
 </manifest>

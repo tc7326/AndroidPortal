@@ -31,6 +31,7 @@ public class SynchronizedActivity extends AppCompatActivity {
     }
 
     @OnClick({R.id.btn_sync, R.id.btn_sync_0})
+
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_sync:
@@ -41,7 +42,9 @@ public class SynchronizedActivity extends AppCompatActivity {
 
 //                    new TwoThread(oneSync).start();
 
-                    new ThreeThread().start();
+//                    new ThreeThread().start();
+
+                    new FourThread().start();
 
                 }
                 break;
@@ -89,6 +92,23 @@ public class SynchronizedActivity extends AppCompatActivity {
 
     }
 
+    /*
+     * 静态
+     * */
+    private static class TwoSync {
+
+        static synchronized void testFour() {
+            Log.i("testOne-start", new Date() + "");
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            Log.i("testOne-end", new Date() + "");
+        }
+
+    }
+
     class OneThread extends Thread {
         @Override
         public void run() {
@@ -113,13 +133,21 @@ public class SynchronizedActivity extends AppCompatActivity {
         }
     }
 
-    /*
-     * 锁住对应的class
-     * */
+
     private class ThreeThread extends Thread {
         @Override
         public void run() {
             new OneSync().testThree();
+        }
+    }
+
+    /*
+     * static synchronized方法也相当于全局锁，相当于锁住了代码段
+     * */
+    private class FourThread extends Thread {
+        @Override
+        public void run() {
+            TwoSync.testFour();
         }
     }
 

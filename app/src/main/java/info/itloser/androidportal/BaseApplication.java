@@ -1,7 +1,6 @@
 package info.itloser.androidportal;
 
 import android.app.Application;
-import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -23,6 +22,8 @@ public class BaseApplication extends Application implements ScreenListener.Scree
         super.onCreate();
         //屏幕监听
         new ScreenListener(getApplicationContext()).begin(this);
+
+        //初始化时区
 
         //初始化
         UMConfigure.init(this, "你的应用在友盟上的APPKEY", "umeng", UMConfigure.DEVICE_TYPE_PHONE, null);
@@ -53,7 +54,6 @@ public class BaseApplication extends Application implements ScreenListener.Scree
                 Toast.makeText(getApplicationContext(), "哈哈哈", Toast.LENGTH_SHORT).show();
             }
         });
-
 
 
     }
