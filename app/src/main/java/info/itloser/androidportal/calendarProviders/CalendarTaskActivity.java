@@ -1,4 +1,4 @@
-package info.itloser.androidportal.CalendarProviders;
+package info.itloser.androidportal.calendarProviders;
 
 import android.annotation.SuppressLint;
 import android.content.ContentResolver;

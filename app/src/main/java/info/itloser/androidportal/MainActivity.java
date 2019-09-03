@@ -3,6 +3,7 @@ package info.itloser.androidportal;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,8 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import info.itloser.androidportal.CalendarProviders.CalendarTaskActivity;
+import butterknife.ButterKnife;
 import info.itloser.androidportal.bitmaps.ViewToBitmapActivity;
+import info.itloser.androidportal.calendarProviders.CalendarTaskActivity;
 import info.itloser.androidportal.components.goactivity.GoSingleInstanceActivity;
 import info.itloser.androidportal.file_sql.FileActivity;
 import info.itloser.androidportal.file_sql.SerialActivity;
@@ -30,6 +32,7 @@ import info.itloser.androidportal.retrofits.WanAndroidActivity;
 import info.itloser.androidportal.rxjavas.RxJavaActivity;
 import info.itloser.androidportal.socket.MyWebSocketService;
 import info.itloser.androidportal.socket.VVService;
+import info.itloser.androidportal.statusbar.StatusBarActivity;
 import info.itloser.androidportal.threads.HandlerActivity;
 import info.itloser.androidportal.threads.SynchronizedActivity;
 import info.itloser.androidportal.threads.ThreadRunnableActivity;
@@ -42,17 +45,20 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView rvMainList;
 
     List<MainBean> mainBeans = new ArrayList<>();
-
     MainAdapter mainAdapter;
+
+    @BindView(R.id.dl_main)
+    DrawerLayout dlMain;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        butterknife.ButterKnife.bind(this);
+        ButterKnife.bind(this);
 
-        mainBeans.add(new MainBean("d", 0xffff4081, GoSingleInstanceActivity.class));
-        mainBeans.add(new MainBean("日历", 0xFFF5C71E, RiLiActivity.class));
+
+        mainBeans.add(new MainBean("d", 0xFFF5C71E, GoSingleInstanceActivity.class));
+        mainBeans.add(new MainBean("日历", 0xffff4081, RiLiActivity.class));
         mainBeans.add(new MainBean("悬浮框", 0xff789456, null));
         mainBeans.add(new MainBean("友盟分享/登录", 0xffff4081, UmengShareActivity.class));
         mainBeans.add(new MainBean("手势监听", 0xff456123, GestureActivity.class));
@@ -72,6 +78,8 @@ public class MainActivity extends AppCompatActivity {
         mainBeans.add(new MainBean("CountDownLatch多线程并发", 0xff123456, VideoWaitActivity.class));
         mainBeans.add(new MainBean("Retrofit+OkHttp", 0xFFF5C71E, WanAndroidActivity.class));
         mainBeans.add(new MainBean("RxJava", 0xffff4081, RxJavaActivity.class));
+        mainBeans.add(new MainBean("StatusBar", 0xff456789, StatusBarActivity.class));
+
 
         mainAdapter = new MainAdapter(R.layout.item_main_rv, mainBeans);
         mainAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
@@ -81,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(new Intent(MainActivity.this, mainBeans.get(position).activity));
 
                 if (position == 2) {
+
 //                    FloatWindow.get().show();
                     Log.i("dd", "启动service");
 //                    startService(new Intent(MainActivity.this, FloatViewService.class));
@@ -96,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
         startService(new Intent(this, VVService.class));//websocket测试
 
     }
+
 
     class MainBean {
         String title;
@@ -122,6 +132,11 @@ public class MainActivity extends AppCompatActivity {
             helper.setText(R.id.tv_main_item, item.title);
             helper.setBackgroundColor(R.id.tv_main_item, item.color);
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
 }

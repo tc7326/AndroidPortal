@@ -133,14 +133,15 @@
         <activity android:name=".file_sql.SerialActivity" />
         <activity android:name=".threads.HandlerActivity" />
         <activity android:name=".threads.ThreadRunnableActivity" />
-        <activity android:name=".CalendarProviders.CalendarTaskActivity" />
+        <activity android:name=".calendarProviders.CalendarTaskActivity" />
         <activity android:name=".bitmaps.ViewToBitmapActivity" />
         <activity android:name=".threads.SynchronizedActivity" />
         <activity android:name=".threads.ThreadsWaitActivity" />
         <activity android:name=".threads.VideoWaitActivity" />
         <activity android:name=".retrofits.WanAndroidActivity" />
         <activity android:name=".webview.WebViewActivity" />
-        <activity android:name=".rxjavas.RxJavaActivity"></activity>
+        <activity android:name=".rxjavas.RxJavaActivity" />
+        <activity android:name=".statusbar.StatusBarActivity" />
     </application>
 
 </manifest>
