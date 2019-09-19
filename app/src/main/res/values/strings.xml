@@ -36,5 +36,8 @@
     <string name="border_bottom">border_bottom</string>
     <string name="border_top">border_top</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
 </resources>

@@ -72,7 +72,6 @@ public class WanAndroidActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .baseUrl(WAN_ANDROID_URL)
                 .build();
-
     }
 
     /*

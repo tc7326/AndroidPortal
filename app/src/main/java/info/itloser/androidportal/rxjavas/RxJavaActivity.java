@@ -15,6 +15,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import info.itloser.androidportal.R;
+import info.itloser.androidportal.custom.TopToast;
 import info.itloser.androidportal.rxjavas.bean.Course;
 import info.itloser.androidportal.rxjavas.bean.Student;
 import rx.Observable;
@@ -39,6 +40,7 @@ public class RxJavaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rx_java);
         ButterKnife.bind(this);
+
 
         initFakeData();
 
@@ -263,8 +265,6 @@ public class RxJavaActivity extends AppCompatActivity {
 
     void conversionDemo() {
 
-        //黑芝麻糕，糯米糕，姜汁软糖，椰丝酥，豆沙烙饼，夹心麻薯，酥饺，肚脐酥，花生牛皮糖，麻花，绿豆饼，鸡仔饼，南糖。
-
         //demo0
         Observable.just(R.drawable.error)
                 .map(new Func1<Integer, Bitmap>() {
@@ -370,10 +370,10 @@ public class RxJavaActivity extends AppCompatActivity {
     }
 
     void networkDemo() {
-        
+        //这里举例了一个网络请求的链式调用，但是我目前看不懂。
+
 
     }
-
 
     void initFakeData() {
         Course chinese = new Course(0, "语文");

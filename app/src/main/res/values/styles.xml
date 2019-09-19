@@ -1,9 +1,10 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@null</item>
+        <item name="windowNoTitle">true</item>
         <item name="colorPrimaryDark">@null</item>
         <item name="colorAccent">@null</item>
         <item name="android:statusBarColor">@null</item>
@@ -14,6 +15,11 @@
     <style name="PopupwindowAnimation">
         <item name="android:windowExitAnimation">@anim/popup_anim_up</item>
         <item name="android:windowEnterAnimation">@anim/popup_anim_down</item>
+    </style>
+
+    <style name="TopFade">
+        <item name="android:windowEnterAnimation">@anim/in_toptobottom</item>
+        <item name="android:windowExitAnimation">@anim/out_bottomtotop</item>
     </style>
 
 </resources>

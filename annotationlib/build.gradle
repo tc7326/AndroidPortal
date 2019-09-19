@@ -1,0 +1,10 @@
+apply plugin: 'java-library'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.google.guava:guava:28.1-jre'
+
+}
+
+sourceCompatibility = "7"
+targetCompatibility = "7"

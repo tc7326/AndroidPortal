@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AndroidPortal.iml" filepath="$PROJECT_DIR$/AndroidPortal.iml" />
+      <module fileurl="file://$PROJECT_DIR$/annotationcomp/annotationcomp.iml" filepath="$PROJECT_DIR$/annotationcomp/annotationcomp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/annotationlib/annotationlib.iml" filepath="$PROJECT_DIR$/annotationlib/annotationlib.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/qrcodereaderview/qrcodereaderview.iml" filepath="$PROJECT_DIR$/qrcodereaderview/qrcodereaderview.iml" />
     </modules>

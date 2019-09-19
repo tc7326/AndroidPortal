@@ -15,25 +15,8 @@ public class WanFriendBean {
      * errorMsg :
      */
 
-    private int errorCode;
-    private String errorMsg;
+
     private List<DataBean> data;
-
-    public int getErrorCode() {
-        return errorCode;
-    }
-
-    public void setErrorCode(int errorCode) {
-        this.errorCode = errorCode;
-    }
-
-    public String getErrorMsg() {
-        return errorMsg;
-    }
-
-    public void setErrorMsg(String errorMsg) {
-        this.errorMsg = errorMsg;
-    }
 
     public List<DataBean> getData() {
         return data;
