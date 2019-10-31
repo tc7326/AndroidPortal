@@ -35,12 +35,42 @@ public class ThreadRunnableActivity extends AppCompatActivity {
         new MyAsyncTask("task5").executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, "");
 
 
+
+        //最常用的最简单的一个线程
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                //操作
+            }
+        }).start();
+
+
+        //线程的两个执行方法
+        new MyThread().start();//
+
+        new MyThread().run();//
+
+
     }
 
+    /*
+    * 类继承Thread
+    * */
+    class MyThread extends Thread{
+        @Override
+        public void run() {
+            super.run();
+            //操作
+        }
+    }
+
+    /*
+    * 类实现Runnable接口
+    * */
     class MyRunnable implements Runnable {
         @Override
         public void run() {
-
+            //操作
         }
     }
 
@@ -95,6 +125,12 @@ public class ThreadRunnableActivity extends AppCompatActivity {
 
         MyAsyncTask(String name) {
             this.name = name;
+        }
+
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
         }
 
         @Override

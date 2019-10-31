@@ -1,6 +1,7 @@
 package info.itloser.androidportal;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -28,6 +29,10 @@ public class UmengShareActivity extends AppCompatActivity {
     @BindView(R.id.iv_long)
     ImageView ivLong;
 
+    public static Context sContext;//内存泄漏测试用
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +40,8 @@ public class UmengShareActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         context = UmengShareActivity.this;
+
+        sContext = this;//内存泄漏测试用
 
         Glide.with(this).load(R.mipmap.ic_long).into(ivLong);
 
